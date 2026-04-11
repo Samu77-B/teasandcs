@@ -1,0 +1,91 @@
+# Teas & C's - API Directory Security
+# Enhanced malware protection for API endpoints
+
+# ============================================
+# 1. STOP CROSS-SITE CONTAMINATION
+# ============================================
+Options -FollowSymLinks
+Options +SymLinksIfOwnerMatch
+
+# ============================================
+# 2. DISABLE DIRECTORY BROWSING
+# ============================================
+Options -Indexes
+
+# ============================================
+# 3. DISABLE SERVER SIGNATURE
+# ============================================
+ServerSignature Off
+
+# ============================================
+# 4. PROTECT CONFIG FILES
+# ============================================
+# Protect config.php and other sensitive files
+<FilesMatch "^(config\.php|\.htaccess|\.htpasswd|php\.ini|error_log|\.env|debug_connection\.php|test_usernames\.php)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ============================================
+# 5. BLOCK MALICIOUS SCRIPT INJECTIONS
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block malicious query strings (script injection, SQL injection, etc.)
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*embed.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\<|%3C).*object.*(\>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (SELECT|UNION|INSERT|DROP|DELETE|UPDATE|REPLACE|CREATE|TRUNCATE|ALTER|EXEC|EXECUTE).*\( [NC,OR]
+    RewriteCond %{QUERY_STRING} (\.\./|\.\.\\) [NC,OR]
+    RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (;|\'|\"|%22).*(union|select|insert|drop|update|md5|benchmark|or|and) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+
+    # Block access to sensitive file extensions
+    RewriteCond %{REQUEST_URI} \.(htaccess|htpasswd|ini|log|sh|sql|bak|backup|old|tmp|swp|swo)$ [NC]
+    RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# ============================================
+# 6. SECURITY HEADERS
+# ============================================
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # XSS Protection
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Content-Type for JSON APIs
+    Header always set Content-Type "application/json; charset=utf-8" "expr=%{CONTENT_TYPE} =~ m#^text/plain#"
+</IfModule>
+
+# ============================================
+# 7. PHP SECURITY SETTINGS
+# ============================================
+<IfModule mod_php7.c>
+    php_flag display_errors Off
+    php_flag log_errors On
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_flag expose_php Off
+</IfModule>
+
+# ============================================
+# 8. ALLOW PHP FILES (but protect config)
+# ============================================
+# PHP files in this directory should be accessible for API endpoints
+# Config files are protected above

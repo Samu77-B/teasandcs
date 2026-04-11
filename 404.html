@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>404 - Page Not Found | Teas & C's</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to Teas & C's homepage to explore our premium tea and coffee shop in Palmers Green, North London.">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://teasandcs.com/404.html">
+    <meta property="og:title" content="404 - Page Not Found | Teas & C's">
+    <meta property="og:description" content="The page you're looking for doesn't exist. Return to Teas & C's homepage.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://teasandcs.com/404.html">
+    <meta property="twitter:title" content="404 - Page Not Found | Teas & C's">
+    <meta property="twitter:description" content="The page you're looking for doesn't exist. Return to Teas & C's homepage.">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#9ba48c">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://teasandcs.com/404.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="brand/Favicon.png">
+    <link rel="apple-touch-icon" href="brand/Favicon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Inter:wght@300;400;500;600&family=Spectral:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Section -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="logo-link">
+                <img src="brand/Teasandcs Logo White.png" alt="Teas & C's Logo" class="logo animate-scaleIn">
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link animate-fadeInRight delay-1">Home</a>
+                <a href="index.html#opening-times" class="nav-link animate-fadeInRight delay-2">Opening Times</a>
+                <a href="index.html#contact-info" class="nav-link animate-fadeInRight delay-3">Contact</a>
+                <a href="index.html#our-story" class="nav-link animate-fadeInRight delay-4">About</a>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Error Section -->
+    <section class="error-404-section">
+        <div class="section-wrapper">
+            <div class="error-404-content">
+                <div class="error-box animate-fadeInLeft">
+                    <h1 class="error-code">404</h1>
+                    <h2 class="error-title">Oops! Page Not Found</h2>
+                    <p class="error-message">The page you're looking for seems to have slipped away like a perfectly brewed cup of tea. Don't worry - even the best sips sometimes need a moment to settle.</p>
+                    <p class="error-subtitle">Let's get you back on track:</p>
+                    <div class="error-links">
+                        <a href="index.html" class="error-link-btn">Return Home</a>
+                        <a href="index.html#contact-info" class="error-link-btn secondary">Contact Us</a>
+                    </div>
+                </div>
+                
+                <div class="error-image animate-fadeInRight">
+                    <img src="images/tandcs-dawing.png" alt="Teas & C's Shop Front Illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div class="footer-placeholder"></div>
+
+    <!-- Load Component System -->
+    <script src="components.js"></script>
+    
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+        
+        // Close menu when a nav link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+    </script>
+    
+    <style>
+        /* 404 Error Section Styles */
+        .error-404-section {
+            background-color: #9ba48c;
+            padding: 120px 0 40px 0;
+            min-height: calc(100vh - 200px);
+        }
+
+        .error-404-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .error-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: 700;
+            color: #ffde59;
+            margin: 0 0 20px 0;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-title {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            font-weight: 600;
+        }
+
+        .error-message {
+            font-size: 1.1rem;
+            color: #ffffff;
+            line-height: 1.8;
+            margin: 0 0 15px 0;
+        }
+
+        .error-subtitle {
+            font-size: 1rem;
+            color: #ffffff;
+            margin: 25px 0 20px 0;
+            font-weight: 500;
+        }
+
+        .error-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .error-link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(223, 255, 0, 0.7) 0%, rgba(201, 230, 0, 0.7) 100%);
+            color: #2c2c2c;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(223, 255, 0, 0.3);
+        }
+
+        .error-link-btn:hover {
+            background: linear-gradient(135deg, rgba(201, 230, 0, 0.85) 0%, rgba(184, 214, 0, 0.85) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(223, 255, 0, 0.4);
+        }
+
+        .error-link-btn.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .error-link-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .error-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .error-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .error-image img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .error-404-section {
+                padding: 100px 0 40px 0;
+            }
+
+            .error-404-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .error-code {
+                font-size: 6rem;
+            }
+
+            .error-title {
+                font-size: 1.5rem;
+            }
+
+            .error-message {
+                font-size: 1rem;
+            }
+
+            .error-box {
+                padding: 30px 20px;
+            }
+
+            .error-image {
+                padding: 20px;
+            }
+
+            .error-image img {
+                max-width: 250px;
+            }
+
+            .error-links {
+                flex-direction: column;
+            }
+
+            .error-link-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .error-code {
+                font-size: 4rem;
+            }
+
+            .error-title {
+                font-size: 1.3rem;
+            }
+
+            .error-message {
+                font-size: 0.95rem;
+            }
+
+            .error-box {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+# System files
+.DS_Store
+Thumbs.db
+AppData/
+
+# Editor files
+.vscode/
+.idea/
+.windsurf/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# FTP scripts with credentials (never commit)
+ftp_upload.txt
+**/ftp_upload.txt
+
+# Large files
+*.pdf
+
+# Environment variables - CRITICAL: Never commit secrets
+.env
+.env.*
+!.env.example
+
+# Local configuration files (contain sensitive credentials)
+config.local.js
+api/config.local.php
+*.local.js
+*.local.php
+
+# Security: Sensitive test/debug files
+test_connection.php
+debug_connection.php
+
+# Documentation files (not needed on production server)
+*.md
+docs/
+
+# Nested folders that are separate Git repositories (avoid embedded-repo / submodule issues)
+ndo-fabhair/
+ordering/
