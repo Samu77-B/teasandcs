@@ -125,6 +125,11 @@ body {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* Hero anchor: keep top visible under fixed navbar when scrolling to #home */
+#home {
+    scroll-margin-top: 100px;
+}
+
 /* Header Section */
 .header {
     padding: 0;
