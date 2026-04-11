@@ -1,0 +1,56 @@
+[
+  {
+    "id": 3,
+    "name": "Loose Leaf Tea",
+    "slug": "everyday-teas",
+    "description": "Loose leaf tea.",
+    "subtitle": "Loose leaf tea.",
+    "icon": "🍵",
+    "display_order": 1
+  },
+  {
+    "id": 5,
+    "name": "Coffee",
+    "slug": "coffees",
+    "description": "Climpson & Sons Specialty Coffee beans from Brazil.",
+    "subtitle": "Climpson & Sons Specialty Coffee beans from Brazil.",
+    "icon": "☕",
+    "display_order": 2
+  },
+  {
+    "id": 8,
+    "name": "Tea Lattes",
+    "slug": "tea-lattes",
+    "description": "A tea base, with luxurious steamed milk.",
+    "subtitle": "A tea base, with luxurious steamed milk.",
+    "icon": "☕",
+    "display_order": 3
+  },
+  {
+    "id": 7,
+    "name": "Chocolate",
+    "slug": "chocolate",
+    "description": "Specialty chocolate by Mork.",
+    "subtitle": "Specialty chocolate by Mork.",
+    "icon": "🍫",
+    "display_order": 4
+  },
+  {
+    "id": 4,
+    "name": "Matcha/Hojicha",
+    "slug": "matcha-teas",
+    "description": "Freshly whisked Matcha/Hojicha.",
+    "subtitle": "Freshly whisked Matcha/Hojicha.",
+    "icon": "🫖",
+    "display_order": 5
+  },
+  {
+    "id": 6,
+    "name": "Specials",
+    "slug": "specialties",
+    "description": "Limited time specials.",
+    "subtitle": "Limited time specials.",
+    "icon": "✨",
+    "display_order": 6
+  }
+]

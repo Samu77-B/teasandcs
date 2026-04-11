@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Teas &amp; C's - Barista Orders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a1d21;
+            color: #e8eaed;
+            min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: 40px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0 24px;
+            border-bottom: 2px solid #2d3238;
+        }
+        .header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .header .sub {
+            font-size: 0.95rem;
+            color: #9aa0a6;
+            margin-top: 6px;
+        }
+        .pending-count {
+            display: inline-block;
+            background: #ea4335;
+            color: white;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+        .pending-count.zero {
+            background: #34a853;
+        }
+        .last-updated {
+            font-size: 0.8rem;
+            color: #5f6368;
+            margin-top: 8px;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #9aa0a6;
+            margin: 24px 0 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .order-card {
+            background: #25282d;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid #6B7A5A;
+            transition: transform 0.2s, opacity 0.3s;
+        }
+        .order-card.new-order {
+            animation: pulse 2s ease-out;
+        }
+        .order-card.completed {
+            opacity: 0.5;
+            border-left-color: #34a853;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .order-id {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .chair-badge {
+            background: #6B7A5A;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .order-time {
+            font-size: 0.85rem;
+            color: #9aa0a6;
+            margin-bottom: 12px;
+        }
+        .delivery-option {
+            font-size: 0.9rem;
+            color: #FF8C42;
+            margin-bottom: 8px;
+        }
+        .order-items {
+            background: #1a1d21;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 1rem;
+        }
+        .order-item:not(:last-child) {
+            border-bottom: 1px solid #2d3238;
+        }
+        .order-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .btn-complete {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: #34a853;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-complete:hover, .btn-complete:active {
+            background: #2d8e47;
+        }
+        .btn-complete:disabled {
+            background: #5f6368;
+            cursor: not-allowed;
+        }
+        .section-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 24px 0 12px;
+        }
+        .section-head .section-title {
+            margin: 0;
+        }
+        .btn-clear-completed {
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: transparent;
+            color: #9aa0a6;
+            border: 2px solid #5f6368;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .btn-clear-completed:hover, .btn-clear-completed:active {
+            color: #fff;
+            border-color: #ea4335;
+            background: rgba(234, 67, 53, 0.12);
+        }
+        .btn-clear-completed:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .status-done {
+            text-align: center;
+            padding: 12px;
+            color: #34a853;
+            font-weight: 600;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: #9aa0a6;
+            font-size: 1.1rem;
+        }
+        .empty-state .icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        .error-banner {
+            background: #ea4335;
+            color: white;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .error-banner.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Teas &amp; C's Orders</h1>
+            <p class="sub">Barista display</p>
+            <div class="pending-count" id="pendingCount">0 pending</div>
+            <p class="last-updated" id="lastUpdated">—</p>
+        </header>
+
+        <div class="error-banner hidden" id="errorBanner">
+            <span id="errorText">Cannot connect to server. Retrying…</span>
+        </div>
+
+        <div class="section-title" id="pendingTitle">Pending orders</div>
+        <div id="pendingOrders"></div>
+
+        <div class="section-head">
+            <div class="section-title" id="completedTitle">Recently completed</div>
+            <button type="button" class="btn-clear-completed" id="clearCompletedBtn" onclick="clearCompletedList()">Clear completed list</button>
+        </div>
+        <div id="completedOrders"></div>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        const API_BASE = (typeof CONFIG !== 'undefined' && CONFIG.API_BASE_URL) ? CONFIG.API_BASE_URL.replace(/\/$/, '') : 'http://localhost:3001/api';
+        const ADMIN_TOKEN = (typeof CONFIG !== 'undefined' && CONFIG.ADMIN_TOKEN) ? CONFIG.ADMIN_TOKEN : 'admin-token-2024';
+        const POLL_INTERVAL = 10000; // 10 seconds
+
+        let lastOrderIds = new Set();
+        let pollTimer = null;
+
+        // Like index.html, avoid any stale Service Worker affecting this page.
+        // (Mobile can be picky with SW + API calls.)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                    if (registrations && registrations.length) {
+                        registrations.forEach(function(r) { r.unregister(); });
+                        if (!sessionStorage.getItem('sw-cleared-orders-display')) {
+                            sessionStorage.setItem('sw-cleared-orders-display', '1');
+                            window.location.reload();
+                        }
+                    }
+                }).catch(function() {});
+            });
+        }
+
+        async function fetchOrders() {
+            const res = await fetch(`${API_BASE}/admin/orders`, {
+                headers: { 'Authorization': `Bearer ${ADMIN_TOKEN}` },
+                cache: 'no-store'
+            });
+            if (!res.ok) {
+                const err = new Error(res.status === 401 ? 'Unauthorized (check ADMIN_TOKEN)' : `HTTP ${res.status}`);
+                err.status = res.status;
+                throw err;
+            }
+            const data = await res.json();
+            return Array.isArray(data) ? data : (data.orders || []);
+        }
+
+        async function markComplete(orderId) {
+            const btn = document.querySelector(`[data-order-id="${orderId}"]`);
+            if (btn) btn.disabled = true;
+            try {
+                const res = await fetch(`${API_BASE}/admin/orders/${orderId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: 'completed' }),
+                    cache: 'no-store'
+                });
+                if (!res.ok) throw new Error(res.status);
+                playCompleteSound();
+                loadOrders();
+            } catch (e) {
+                if (btn) btn.disabled = false;
+                showError(true);
+            }
+        }
+
+        async function clearCompletedList() {
+            const btn = document.getElementById('clearCompletedBtn');
+            if (!confirm('Clear all completed orders from this list? Pending orders stay. This cannot be undone.')) return;
+            if (btn) btn.disabled = true;
+            try {
+                const res = await fetch(`${API_BASE}/admin/orders/completed`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
+                    cache: 'no-store'
+                });
+                if (!res.ok) throw new Error(res.status);
+                await loadOrders();
+            } catch (e) {
+                showError(true, 'Could not clear completed list. Check connection and ADMIN_TOKEN.');
+                console.error(e);
+                if (btn) btn.disabled = false;
+            }
+        }
+
+        function playNewOrderSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.frequency.setValueAtTime(800, ctx.currentTime);
+                osc.frequency.setValueAtTime(600, ctx.currentTime + 0.1);
+                gain.gain.setValueAtTime(0.25, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.3);
+            } catch (_) {}
+        }
+
+        function playCompleteSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.frequency.setValueAtTime(523, ctx.currentTime);
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.15);
+            } catch (_) {}
+        }
+
+        function formatTime(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+
+        function escapeHtml(s) {
+            if (s == null || s === undefined) return '';
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function renderOrder(order, isCompleted) {
+            // Normalise different backend shapes (Node JSON file vs PHP/MySQL API)
+            const normalised = (() => {
+                const parseMoney = (val) => {
+                    if (val === null || val === undefined || val === '') return null;
+                    const n = Number(val);
+                    return Number.isNaN(n) ? null : n;
+                };
+
+                const id = order.id != null ? order.id : (order.order_id || '');
+
+                // Items may already be an array or a JSON string from the DB
+                let items = order.items;
+                if (typeof items === 'string') {
+                    try {
+                        items = JSON.parse(items);
+                    } catch {
+                        items = [];
+                    }
+                }
+                if (!Array.isArray(items)) {
+                    items = [];
+                }
+
+                const total =
+                    parseMoney(order.total) ??
+                    parseMoney(order.total_amount) ??
+                    0;
+
+                const chairNumber =
+                    order.chairNumber ||
+                    order.chair_number ||
+                    'Not specified';
+
+                const deliveryOption =
+                    order.deliveryOption ||
+                    order.delivery_option ||
+                    '';
+
+                const message =
+                    order.message ||
+                    order.notes ||
+                    '';
+
+                const createdAt =
+                    order.createdAt ||
+                    order.created_at ||
+                    null;
+
+                const completedAt =
+                    order.completedAt ||
+                    order.completed_at ||
+                    null;
+
+                return { id, items, total, chairNumber, deliveryOption, message, createdAt, completedAt };
+            })();
+
+            const card = document.createElement('div');
+            card.className = 'order-card' + (isCompleted ? ' completed' : '');
+            const isNew = !lastOrderIds.has(normalised.id);
+            if (isNew && !isCompleted) card.classList.add('new-order');
+
+            const itemsHtml = normalised.items.map(i => {
+                const name = i.name || i.item_name || i.title || 'Item';
+                const quantity = Math.max(1, Number(i.quantity || i.qty) || 1);
+                let lineTotal = 0;
+                if (i.line_total != null && i.line_total !== '' && Number.isFinite(Number(i.line_total))) {
+                    lineTotal = Number(i.line_total);
+                } else if (i.lineTotal != null && i.lineTotal !== '' && Number.isFinite(Number(i.lineTotal))) {
+                    lineTotal = Number(i.lineTotal);
+                } else {
+                    const unitRaw = i.unit_price ?? i.unitPrice ?? i.price_per_item;
+                    if (unitRaw != null && unitRaw !== '' && Number.isFinite(Number(unitRaw))) {
+                        lineTotal = Number(unitRaw) * quantity;
+                    } else {
+                        // PWA stores `price` as full line total (incl. qty & options), not unit price
+                        lineTotal = Number(i.price) || 0;
+                    }
+                }
+                const mods = [];
+                if (i.size) mods.push(i.size === 'large' ? 'Large' : (i.size === 'regular' ? 'Regular' : i.size));
+                if (i.milk) mods.push(i.milk === 'whole' ? 'whole milk' : `${i.milk} milk`);
+                if (i.sweetener && i.sweetener !== 'none') mods.push(i.sweetener);
+                const modStr = mods.length ? ` · ${mods.join(', ')}` : '';
+                const label = quantity > 1 ? `${name}${modStr} × ${quantity}` : `${name}${modStr}`;
+                return `<div class="order-item"><span>${escapeHtml(label)}</span><span>£${lineTotal.toFixed(2)}</span></div>`;
+            }).join('');
+
+            const deliveryHtml = normalised.deliveryOption
+                ? `<div class="delivery-option">📦 ${escapeHtml(normalised.deliveryOption)}</div>`
+                : '';
+            const messageHtml = normalised.message
+                ? `<div class="order-message" style="margin: 8px 0; padding: 10px; background: rgba(255,140,66,0.15); border-radius: 8px; font-size: 0.95rem;">📝 ${escapeHtml(normalised.message)}</div>`
+                : '';
+
+            const safeOrderId = Number.parseInt(String(normalised.id), 10);
+            const idForDisplay = Number.isFinite(safeOrderId) ? safeOrderId : escapeHtml(String(normalised.id));
+
+            card.innerHTML = `
+                <div class="order-header">
+                    <span class="order-id">Order #${idForDisplay}</span>
+                    <span class="chair-badge">🪑 ${escapeHtml(String(normalised.chairNumber))}</span>
+                </div>
+                <div class="order-time">${isCompleted && normalised.completedAt ? 'Done ' + formatTime(normalised.completedAt) + ' · ' : ''}Ordered ${formatTime(normalised.createdAt)}</div>
+                ${deliveryHtml}
+                ${messageHtml}
+                <div class="order-items">${itemsHtml}</div>
+                <div class="order-total">Total: £${(normalised.total || 0).toFixed(2)}</div>
+                ${isCompleted
+                    ? '<div class="status-done">✓ Done</div>'
+                : (Number.isFinite(safeOrderId)
+                    ? `<button class="btn-complete" data-order-id="${safeOrderId}" onclick="markComplete(${safeOrderId})">Mark complete</button>`
+                    : '<div class="status-done">Invalid order id</div>')
+                }
+            `;
+            return card;
+        }
+
+        function showError(show, message) {
+            const el = document.getElementById('errorBanner');
+            const text = document.getElementById('errorText');
+            if (text) text.textContent = message || 'Cannot connect to server. Retrying…';
+            el.classList.toggle('hidden', !show);
+        }
+
+        async function loadOrders() {
+            try {
+                const orders = await fetchOrders();
+                showError(false);
+
+                // Only explicit pending (or legacy orders with no status) show here — never drop until marked complete
+                const pending = (orders || []).filter(o => !o.status || o.status === 'pending');
+                const completed = (orders || [])
+                    .filter(o => o.status === 'completed')
+                    .sort((a, b) => {
+                        const ta = new Date(a.completedAt || a.completed_at || 0).getTime();
+                        const tb = new Date(b.completedAt || b.completed_at || 0).getTime();
+                        return tb - ta;
+                    });
+
+                const newIds = new Set(pending.map(o => o.id));
+                const hadNew = pending.some(o => !lastOrderIds.has(o.id));
+                lastOrderIds = new Set(orders.map(o => o.id));
+
+                if (hadNew && pending.length > 0) playNewOrderSound();
+
+                document.getElementById('pendingCount').textContent = `${pending.length} pending`;
+                document.getElementById('pendingCount').classList.toggle('zero', pending.length === 0);
+                document.getElementById('lastUpdated').textContent = `Updated ${formatTime(new Date().toISOString())}`;
+
+                const pendingEl = document.getElementById('pendingOrders');
+                pendingEl.innerHTML = '';
+                if (pending.length === 0) {
+                    pendingEl.innerHTML = '<div class="empty-state"><div class="icon">☕</div>No pending orders</div>';
+                } else {
+                    pending.forEach(o => pendingEl.appendChild(renderOrder(o, false)));
+                }
+
+                const completedEl = document.getElementById('completedOrders');
+                completedEl.innerHTML = '';
+                if (completed.length === 0) {
+                    completedEl.innerHTML = '<div class="empty-state"><div class="icon">—</div>No completed orders yet</div>';
+                } else {
+                    completed.forEach(o => completedEl.appendChild(renderOrder(o, true)));
+                }
+
+                const clearBtn = document.getElementById('clearCompletedBtn');
+                if (clearBtn) clearBtn.disabled = completed.length === 0;
+            } catch (e) {
+                const msg = e.status === 401
+                    ? 'Unauthorized: ADMIN_TOKEN may not match Railway. Check config.js and Railway Variables.'
+                    : (e.message || 'Cannot connect to server. Retrying…');
+                showError(true, msg);
+                console.error('Failed to load orders:', e);
+            }
+        }
+
+        function startPolling() {
+            loadOrders();
+            pollTimer = setInterval(loadOrders, POLL_INTERVAL);
+        }
+
+        document.addEventListener('DOMContentLoaded', startPolling);
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) clearInterval(pollTimer);
+            else startPolling();
+        });
+    </script>
+</body>
+</html>

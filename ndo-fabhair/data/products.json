@@ -1,0 +1,282 @@
+[
+  {
+    "id": 91,
+    "name": "Milk Oolong (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 3,
+    "large_price": 4,
+    "type": "tea",
+    "description": "Creamy and smooth oolong tea"
+  },
+  {
+    "id": 92,
+    "name": "Lapsang Souchong (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 3,
+    "large_price": 4,
+    "type": "tea",
+    "description": "Smoky and bold black tea"
+  },
+  {
+    "id": 93,
+    "name": "Jasmine Pearls (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 3,
+    "large_price": 4,
+    "type": "tea",
+    "description": "Fragrant jasmine-scented green tea pearls"
+  },
+  {
+    "id": 94,
+    "name": "Silver Needle (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 3,
+    "large_price": 4,
+    "type": "tea",
+    "description": "Delicate white tea with silver buds"
+  },
+  {
+    "id": 95,
+    "name": "Sencha (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "tea",
+    "description": "Classic Japanese green tea"
+  },
+  {
+    "id": 96,
+    "name": "Genmaicha (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "tea",
+    "description": "Green tea with roasted brown rice"
+  },
+  {
+    "id": 97,
+    "name": "Chocolate Noir (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "tea",
+    "description": "Rich chocolate-flavored black tea"
+  },
+  {
+    "id": 98,
+    "name": "Lychee & Rose Noir (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "tea",
+    "description": "Fragrant black tea with lychee and rose"
+  },
+  {
+    "id": 99,
+    "name": "Everyday Teas (H)",
+    "category": "everyday-teas",
+    "subcategory": null,
+    "regular_price": 2.2,
+    "large_price": 3.2,
+    "type": "tea",
+    "description": "Breakfast tea, Earl Grey, Berry, Mint, Camomile, Ginger, Rooibos"
+  },
+  {
+    "id": 100,
+    "name": "Espresso (H)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 1.9,
+    "large_price": 2.9,
+    "type": "coffee",
+    "description": "Rich and intense espresso shot"
+  },
+  {
+    "id": 101,
+    "name": "Black Americano/Long Black (H/I)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2,
+    "large_price": 3,
+    "type": "coffee",
+    "description": "Espresso with hot water"
+  },
+  {
+    "id": 102,
+    "name": "White Americano (H/I)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2.4,
+    "large_price": 3.4,
+    "type": "coffee",
+    "description": "Espresso with hot water and milk"
+  },
+  {
+    "id": 103,
+    "name": "Macchiatto (H)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2.4,
+    "large_price": 3.4,
+    "type": "coffee",
+    "description": "Espresso with a dollop of steamed milk"
+  },
+  {
+    "id": 104,
+    "name": "Piccolo/Cortado (H)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2.4,
+    "large_price": 3.4,
+    "type": "coffee",
+    "description": "Espresso with equal parts steamed milk"
+  },
+  {
+    "id": 105,
+    "name": "Flat White (H)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2.5,
+    "large_price": 3.5,
+    "type": "coffee",
+    "description": "Smooth coffee with microfoam"
+  },
+  {
+    "id": 106,
+    "name": "Latte (H/I)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "coffee",
+    "description": "Espresso with steamed milk"
+  },
+  {
+    "id": 107,
+    "name": "Cappuccino (H)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "coffee",
+    "description": "Espresso with steamed milk and foam"
+  },
+  {
+    "id": 108,
+    "name": "Mocha w/ Mork 50% choc (H/I)",
+    "category": "coffees",
+    "subcategory": null,
+    "regular_price": 3.2,
+    "large_price": 4.2,
+    "type": "coffee",
+    "description": "Espresso with Mork 50% chocolate and steamed milk"
+  },
+  {
+    "id": 109,
+    "name": "Chai Latte (H)",
+    "category": "tea-lattes",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "tea",
+    "description": "Spiced tea with steamed milk"
+  },
+  {
+    "id": 110,
+    "name": "Earl Grey & Vanilla Latte (H)",
+    "category": "tea-lattes",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "tea",
+    "description": "Earl Grey tea with vanilla and steamed milk"
+  },
+  {
+    "id": 111,
+    "name": "Mork 50% Junior Dark Chocolate (H/I)",
+    "category": "chocolate",
+    "subcategory": null,
+    "regular_price": 2.6,
+    "large_price": 3.6,
+    "type": "specialty",
+    "description": "Mork 50% dark chocolate drink"
+  },
+  {
+    "id": 112,
+    "name": "Mork 70% Original Dark Chocolate (H/I)",
+    "category": "chocolate",
+    "subcategory": null,
+    "regular_price": 2.8,
+    "large_price": 3.8,
+    "type": "specialty",
+    "description": "Mork 70% dark chocolate drink"
+  },
+  {
+    "id": 113,
+    "name": "Mork 85% Even Darker Chocolate (H)",
+    "category": "chocolate",
+    "subcategory": null,
+    "regular_price": 3,
+    "large_price": 4,
+    "type": "specialty",
+    "description": "Mork 85% dark chocolate drink"
+  },
+  {
+    "id": 114,
+    "name": "Classic Matcha Latte (H/I)",
+    "category": "matcha-teas",
+    "subcategory": null,
+    "regular_price": 3.2,
+    "large_price": 4.2,
+    "type": "matcha",
+    "description": "Traditional matcha with steamed milk"
+  },
+  {
+    "id": 115,
+    "name": "Classic Hojicha Latte (H/I)",
+    "category": "matcha-teas",
+    "subcategory": null,
+    "regular_price": 3,
+    "large_price": 4,
+    "type": "matcha",
+    "description": "Roasted green tea with steamed milk"
+  },
+  {
+    "id": 116,
+    "name": "Pink Hot Chocolate (H)",
+    "category": "specialties",
+    "subcategory": null,
+    "regular_price": 3.6,
+    "large_price": 4.6,
+    "type": "specialty",
+    "description": "Pink hot chocolate special"
+  },
+  {
+    "id": 117,
+    "name": "Sakura Sencha Tea (H)",
+    "category": "specialties",
+    "subcategory": null,
+    "regular_price": 2.2,
+    "large_price": 4.6,
+    "type": "tea",
+    "description": "Cherry blossom sencha tea special"
+  },
+  {
+    "id": 118,
+    "name": "Ruby Mocha (H)",
+    "category": "specialties",
+    "subcategory": null,
+    "regular_price": 3.6,
+    "large_price": 0,
+    "type": "specialty",
+    "description": "Ruby Mocha"
+  }
+]

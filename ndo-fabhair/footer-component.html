@@ -1,0 +1,23 @@
+<!-- Footer Component -->
+<footer class="site-footer" style="background: #f8f9fa; padding: 20px; text-align: center; margin-top: 40px; border-top: 1px solid #e0e0e0;">
+    <div class="footer-content" style="max-width: 420px; margin: 0 auto; color: #666; font-size: 14px;">
+        <p style="margin: 10px 0;">
+            &copy; <span id="copyright-year"></span> Teas & C's. All rights reserved.
+        </p>
+        <p style="margin: 10px 0; font-size: 12px; color: #999;">
+            Order your favorite teas and coffees with ease
+        </p>
+        <p style="margin: 10px 0; font-size: 12px; color: #999;">
+            A product of <a href="https://paradigmstudio.net/" target="_blank" rel="noopener noreferrer" style="color: #6B7A5A; text-decoration: none;">Paradigm Digital Studio</a>
+        </p>
+    </div>
+    <script>
+        // Auto-update copyright year
+        (function() {
+            const yearElement = document.getElementById('copyright-year');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+        })();
+    </script>
+</footer>

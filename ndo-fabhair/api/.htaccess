@@ -1,0 +1,17 @@
+# API Directory - Minimal config to avoid 403 on payment endpoint
+# Only protect config, allow all PHP API files
+
+Options -Indexes
+
+# Protect config only (DB credentials)
+<FilesMatch "^(config\.php|config\.local\.php|\.htaccess|\.env)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+# Allow CORS for API (needed for fetch from frontend)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>

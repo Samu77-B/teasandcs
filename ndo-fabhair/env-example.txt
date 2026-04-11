@@ -1,0 +1,16 @@
+# Environment Variables for Teas & C's Backend
+# Copy this file to .env and fill in your actual values
+
+# Stripe Configuration
+STRIPE_SECRET_KEY=sk_live_your_live_secret_key_here
+STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret_here
+
+# Server Configuration
+PORT=3001
+NODE_ENV=production
+
+# Admin Configuration
+ADMIN_TOKEN=your-secure-admin-token-2024
+
+# Domain Configuration (for CORS)
+ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com

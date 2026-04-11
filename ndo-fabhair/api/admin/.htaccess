@@ -1,0 +1,62 @@
+# ============================================
+# ADMIN API DIRECTORY SECURITY .HTACCESS
+# Teas & C's PWA Ordering System
+# ============================================
+
+# 1. STOP CROSS-SITE CONTAMINATION
+Options -FollowSymLinks
+Options +SymLinksIfOwnerMatch
+
+# 2. DISABLE DIRECTORY BROWSING
+Options -Indexes
+
+# 3. PROTECT ALL FILES (Admin area should be extra secure)
+<FilesMatch "^(\.htaccess|\.htpasswd|php\.ini|error_log|\.env)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+# 4. BLOCK MALICIOUS SCRIPT INJECTIONS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Block script injection attempts
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+    RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+    RewriteCond %{QUERY_STRING} (eval\(|exec\(|system\(|shell_exec|passthru) [NC,OR]
+    RewriteCond %{QUERY_STRING} (\.\./|\.\.\\|\.\.%2F|\.\.%5C) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+    
+    # Block suspicious user agents
+    RewriteCond %{HTTP_USER_AGENT} (libwww-perl|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} (<|>|'|%0A|%0D|%27|%3C|%3E|%00) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# 5. DISABLE SERVER SIGNATURE
+ServerSignature Off
+
+# 6. ENHANCED SECURITY HEADERS
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "no-referrer"
+    Header always set Content-Security-Policy "default-src 'self'"
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# 7. ALLOW PHP FILES TO EXECUTE (admin endpoints require authentication)
+<FilesMatch "\.php$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# 8. BLOCK ALL OTHER FILE TYPES
+<FilesMatch "\.(log|sql|bak|backup|old|tmp|temp|swp|swo|txt|md|js|html)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>

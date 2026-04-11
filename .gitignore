@@ -42,6 +42,5 @@ debug_connection.php
 *.md
 docs/
 
-# Nested folders that are separate Git repositories (avoid embedded-repo / submodule issues)
-ndo-fabhair/
+# Nested repo with corrupt history — keep out of this remote until fixed (optional)
 ordering/

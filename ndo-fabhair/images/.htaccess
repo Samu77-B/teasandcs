@@ -1,0 +1,65 @@
+# ============================================
+# IMAGES DIRECTORY SECURITY .HTACCESS
+# Teas & C's PWA Ordering System
+# ============================================
+
+# 1. DISABLE DIRECTORY BROWSING
+# Prevents listing of image files
+Options -Indexes
+
+# 2. ALLOW IMAGE FILES TO BE SERVED
+# Explicitly allow common image formats
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|bmp|tiff|GIF)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# 3. BLOCK EXECUTION OF SCRIPTS
+# Prevent any PHP or other scripts from running in images folder
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+# 4. BLOCK ACCESS TO SENSITIVE FILES
+# Prevent access to backup files, config files, etc.
+<FilesMatch "\.(log|sql|bak|backup|old|tmp|temp|swp|swo|htaccess|htpasswd)$">
+    Order deny,allow
+    Deny from all
+</FilesMatch>
+
+# 5. DISABLE SERVER SIGNATURE
+ServerSignature Off
+
+# 6. SECURITY HEADERS FOR IMAGES
+<IfModule mod_headers.c>
+    # Cache control for images (optional - adjust as needed)
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|bmp|tiff|GIF)$">
+        Header set Cache-Control "public, max-age=31536000"
+    </FilesMatch>
+    
+    # Prevent MIME type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Remove server information
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# 7. PREVENT CROSS-SITE CONTAMINATION
+Options -FollowSymLinks
+Options +SymLinksIfOwnerMatch
+
+# 8. BLOCK MALICIOUS PATTERNS
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Block script injection attempts in filenames
+    RewriteCond %{REQUEST_FILENAME} (\.php|\.php3|\.php4|\.php5|\.phtml|\.pl|\.py|\.jsp|\.asp|\.sh|\.cgi) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+    
+    # Block suspicious query strings
+    RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+    RewriteCond %{QUERY_STRING} (eval\(|exec\(|system\(|shell_exec|passthru) [NC]
+    RewriteRule ^(.*)$ - [F,L]
+</IfModule>

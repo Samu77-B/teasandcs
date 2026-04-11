@@ -1,0 +1,24 @@
+{
+  "name": "Teas & C's",
+  "short_name": "Teas&C's",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#A8B896",
+  "theme_color": "#6B7A5A",
+  "description": "Teas & C's - Brewing perfection next door",
+  "categories": ["food", "shopping"],
+  "lang": "en",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiM2QjdBNUEiLz4KPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNjQiIGZpbGw9IiNBOEI4OTYiLz4KPHN2ZyB4PSI2NCIgeT0iNjQiIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNkI3QTVBIj4KPHBhdGggZD0iTTIgMjFsMi00aDE2bDIgNEgyem04LTdWOWg0djVoLTR6bTYtNVY3SDh2Mmg4em0wLTJWNmg4djJoLTh6Ii8+CjxlbGxpcHNlIGNsYXNzPSJzdGVhbSIgY3g9IjgiIGN5PSIzIiByeD0iMSIgcnk9IjIiLz4KPGVsbGlwc2UgY2xhc3M9InN0ZWFtIiBjeD0iMTIiIGN5PSIyIiByeD0iMSIgcnk9IjIiLz4KPGVsbGlwc2UgY2xhc3M9InN0ZWFtIiBjeD0iMTYiIGN5PSIzIiByeD0iMSIgcnk9IjIiLz4KPC9zdmc+Cjwvc3ZnPgo=",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiM2QjdBNUEiLz4KPGNpcmNsZSBjeD0iMjU2IiBjeT0iMjU2IiByPSIxNzAiIGZpbGw9IiNBOEI4OTYiLz4KPHN2ZyB4PSIxNzAiIHk9IjE3MCIgd2lkdGg9IjE3MCIgaGVpZ2h0PSIxNzAiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzZCN0E1QSI+CjxwYXRoIGQ9Ik0yIDIxbDItNGgxNmwyIDRIMnptOC03VjloNHY1aC00em02LTVWN0g4djJoOHptMC0yVjZoOHYyaC04eiIvPgo8ZWxsaXBzZSBjbGFzcz0ic3RlYW0iIGN4PSI4IiBjeT0iMyIgcng9IjEiIHJ5PSIyIi8+CjxlbGxpcHNlIGNsYXNzPSJzdGVhbSIgY3g9IjEyIiBjeT0iMiIgcng9IjEiIHJ5PSIyIi8+CjxlbGxpcHNlIGNsYXNzPSJzdGVhbSIgY3g9IjE2IiBjeT0iMyIgcng9IjEiIHJ5PSIyIi8+Cjwvc3ZnPgo8L3N2Zz4K",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
