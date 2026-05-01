@@ -492,17 +492,6 @@ body {
     border-left-color: #6c9bd1;
 }
 
-.holiday-notice {
-    margin: 0 0 20px;
-    padding: 14px 18px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    line-height: 1.45;
-    color: #2c2c2c;
-    background-color: #fff9e6;
-    border-left: 4px solid #c4a035;
-}
-
 
 .record-player-box {
     display: flex;
