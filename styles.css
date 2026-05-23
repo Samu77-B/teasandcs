@@ -179,15 +179,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Minion Pro Condensed', 'Minion Pro', 'Spectral', serif;
-    font-size: 11rem;
+    font-size: clamp(3.25rem, 1rem + 7.5vw, 11rem);
     font-weight: 400;
     color: #ffde59;
-    letter-spacing: -4px;
+    letter-spacing: clamp(-0.08em, calc(-0.02em - 0.12vw), 0);
     text-align: center;
     z-index: 500;
     white-space: normal;
-    line-height: 0.85;
-    max-width: 92%;
+    line-height: 0.9;
+    max-width: min(92%, 22ch);
 }
 
 /* Hero Image */
@@ -854,13 +854,6 @@ body {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .hero-text {
-        font-size: 9rem;
-        letter-spacing: -3px;
-        top: 50%;
-        white-space: normal;
-    }
-    
     .hero-image {
         width: 100%;
         height: 100%;
@@ -904,16 +897,7 @@ body {
     }
     
     .hero-text {
-        font-size: 6.5rem;
-        letter-spacing: -2px;
-        top: 50%;
-        width: 95%;
-        left: 50%;
-        z-index: 500;
-        color: #ffde59;
-        white-space: normal;
-        max-width: 95%;
-        line-height: 0.9;
+        max-width: min(95%, 20ch);
     }
     
     .section-wrapper {
@@ -1024,14 +1008,7 @@ body {
     }
     
     .hero-text {
-        font-size: 4.5rem;
-        letter-spacing: -1px;
-        top: 50%;
-        width: 95%;
-        text-align: center;
-        z-index: 500;
-        max-width: 95%;
-        line-height: 0.9;
+        max-width: min(95%, 18ch);
     }
     
     .section-wrapper {
@@ -1107,11 +1084,7 @@ body {
 
 @media (max-width: 375px) {
     .hero-text {
-        font-size: 3.5rem;
-        letter-spacing: 0;
-        top: 50%;
-        max-width: 98%;
-        line-height: 0.95;
+        max-width: min(98%, 16ch);
     }
     
     .logo {
