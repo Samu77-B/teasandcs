@@ -177,7 +177,7 @@ body {
     padding: 0 1rem;
     box-sizing: border-box;
     font-family: 'Minion Pro Condensed', 'Minion Pro', 'Spectral', serif;
-    font-size: 2.75rem;
+    font-size: 5.5rem;
     font-weight: 400;
     color: #ffde59;
     letter-spacing: -0.02em;
@@ -854,13 +854,13 @@ body {
 /* Responsive Design */
 @media (min-width: 1200px) {
     .hero-text {
-        font-size: 3rem;
+        font-size: 6rem;
     }
 }
 
 @media (max-width: 1024px) {
     .hero-text {
-        font-size: 2.35rem;
+        font-size: 4.7rem;
     }
 }
 
@@ -874,7 +874,7 @@ body {
     }
 
     .hero-text {
-        font-size: 1.75rem;
+        font-size: 3.5rem;
         top: 46%;
         line-height: 1.2;
     }
@@ -1015,7 +1015,7 @@ body {
     }
 
     .hero-text {
-        font-size: 1.45rem;
+        font-size: 2.9rem;
         top: 44%;
         max-width: 88%;
     }
@@ -1093,7 +1093,7 @@ body {
 
 @media (max-width: 375px) {
     .hero-text {
-        font-size: 1.25rem;
+        font-size: 2.5rem;
         letter-spacing: 0;
     }
 
