@@ -179,14 +179,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Minion Pro Condensed', 'Minion Pro', 'Spectral', serif;
-    font-size: 25rem;
+    font-size: 11rem;
     font-weight: 400;
     color: #ffde59;
-    letter-spacing: -15px;
+    letter-spacing: -4px;
     text-align: center;
     z-index: 500;
-    white-space: nowrap;
-    line-height: 0.8;
+    white-space: normal;
+    line-height: 0.85;
+    max-width: 92%;
 }
 
 /* Hero Image */
@@ -854,10 +855,10 @@ body {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .hero-text {
-        font-size: 20rem;
-        letter-spacing: -10px;
+        font-size: 9rem;
+        letter-spacing: -3px;
         top: 50%;
-        white-space: nowrap;
+        white-space: normal;
     }
     
     .hero-image {
@@ -903,8 +904,8 @@ body {
     }
     
     .hero-text {
-        font-size: 15rem;
-        letter-spacing: -8px;
+        font-size: 6.5rem;
+        letter-spacing: -2px;
         top: 50%;
         width: 95%;
         left: 50%;
@@ -912,6 +913,7 @@ body {
         color: #ffde59;
         white-space: normal;
         max-width: 95%;
+        line-height: 0.9;
     }
     
     .section-wrapper {
@@ -1022,14 +1024,14 @@ body {
     }
     
     .hero-text {
-        font-size: 10rem;
-        letter-spacing: -3px;
+        font-size: 4.5rem;
+        letter-spacing: -1px;
         top: 50%;
         width: 95%;
         text-align: center;
         z-index: 500;
         max-width: 95%;
-        line-height: 0.7;
+        line-height: 0.9;
     }
     
     .section-wrapper {
@@ -1105,11 +1107,11 @@ body {
 
 @media (max-width: 375px) {
     .hero-text {
-        font-size: 8rem;
-        letter-spacing: -2px;
+        font-size: 3.5rem;
+        letter-spacing: 0;
         top: 50%;
         max-width: 98%;
-        line-height: 0.6;
+        line-height: 0.95;
     }
     
     .logo {
