@@ -95,7 +95,7 @@ body {
     cursor: pointer;
     gap: 6px;
     padding: 15px;
-    border: 2px solid #ffffff;
+    border: 2px solid #000000;
     border-radius: 8px;
     transition: all 0.3s ease;
     position: relative;
@@ -113,7 +113,7 @@ body {
 .hamburger span {
     width: 30px;
     height: 4px;
-    background-color: #ffffff;
+    background-color: #000000;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
