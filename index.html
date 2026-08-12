@@ -256,6 +256,9 @@
                     <div id="live-status" class="live-status">
                         <!-- Dynamic status will be inserted here -->
                     </div>
+                    <p class="holiday-notice" id="weather-notice" role="status" hidden>
+                        Due to the hot weather, we will be closing at <strong>3pm</strong> today, tomorrow and Friday.
+                    </p>
                     <div class="times-list">
                         <div class="time-row">Tuesday - Friday: 8am - 5pm</div>
                         <div class="time-row">Saturday: 8:30am - 5pm</div>
@@ -372,6 +375,16 @@
         window.addEventListener('scroll', animateOnScroll);
 
         // Live opening times functionality
+        function formatLocalDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        const earlyCloseDates = ['2026-08-12', '2026-08-13', '2026-08-14'];
+        const earlyCloseTime = 900; // 3pm
+
         function updateLiveStatus() {
             const now = new Date();
             const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
@@ -392,6 +405,18 @@
                 6: { open: 510, close: 1020 }, // Saturday (8:30am)
                 0: { open: 600, close: 960 }   // Sunday (10am-4pm)
             };
+
+            function getCloseTime(dayOfWeek, date) {
+                if (!openingHours[dayOfWeek]) {
+                    return null;
+                }
+
+                if (earlyCloseDates.includes(formatLocalDate(date))) {
+                    return earlyCloseTime;
+                }
+
+                return openingHours[dayOfWeek].close;
+            }
             
             // Helper function to get opening time for a given day
             function getOpeningTimeStr(dayOfWeek) {
@@ -420,7 +445,8 @@
             }
             // Check if we're open today
             else if (openingHours[currentDay]) {
-                const { open, close } = openingHours[currentDay];
+                const { open } = openingHours[currentDay];
+                const close = getCloseTime(currentDay, now);
                 
                 if (currentTime >= open && currentTime < close) {
                     // We're open - calculate time remaining
@@ -471,6 +497,11 @@
         
         // Update status on page load and every minute
         document.addEventListener('DOMContentLoaded', function() {
+            const weatherNotice = document.getElementById('weather-notice');
+            if (weatherNotice && earlyCloseDates.includes(formatLocalDate(new Date()))) {
+                weatherNotice.hidden = false;
+            }
+
             updateLiveStatus();
             setInterval(updateLiveStatus, 60000); // Update every minute
 
