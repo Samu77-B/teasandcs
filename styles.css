@@ -453,8 +453,6 @@ body {
 
 .time-row {
     background-color: #e0e0e0;
-    padding: 15px 20px;
-    border-radius: 4px;
     font-size: 1rem;
     color: #2c2c2c;
     transition: all 0.3s ease;
@@ -470,37 +468,44 @@ body {
 /* Live Status Styles */
 .live-status {
     margin-bottom: 20px;
+    width: 100%;
+}
+
+.status-message,
+.holiday-notice,
+.time-row {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 15px 20px;
 }
 
 .status-message {
-    padding: 15px 20px;
-    border-radius: 6px;
     font-weight: 600;
     text-align: left;
-    border-left: 4px solid;
+    border: none;
 }
 
 .status-open {
     background-color: #fff9e6;
     color: #8b6914;
-    border-left-color: #ffde59;
+    box-shadow: inset 4px 0 0 #ffde59;
 }
 
 .status-closed {
     background-color: #e8f4f8;
     color: #2c5aa0;
-    border-left-color: #6c9bd1;
+    box-shadow: inset 4px 0 0 #6c9bd1;
 }
 
 .holiday-notice {
     margin: 0 0 20px;
-    padding: 14px 18px;
-    border-radius: 6px;
     font-size: 0.95rem;
     line-height: 1.45;
     color: #2c2c2c;
     background-color: #fff9e6;
-    border-left: 4px solid #c4a035;
+    box-shadow: inset 4px 0 0 #c4a035;
+    border: none;
 }
 
 
